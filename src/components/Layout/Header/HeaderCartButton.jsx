@@ -9,7 +9,7 @@ export default function HeaderCartButton() {
     >
       <FontAwesomeIcon icon={faCartShopping} />
       <div>Your Cart</div>
-      <span class="mr-2 ml-3 rounded bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-200">
+      <span className="mr-2 ml-3 rounded bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-200">
         5.0
       </span>
     </button>
