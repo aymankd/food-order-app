@@ -1,10 +1,11 @@
 import React from "react";
 import { DUMMY_MEALS } from "./DummyMeals";
-import MealCard from "./MealCard";
+import MealItem from "./MealItem";
 export default function Meals() {
   const MealsList = DUMMY_MEALS.map((meal) => (
-    <MealCard
+    <MealItem
       key={meal.id}
+      id={meal.id}
       name={meal.name}
       price={meal.price}
       description={meal.description}
