@@ -7,17 +7,14 @@ export default function MealItem(props) {
   /* -------------------------------- Contexts -------------------------------- */
   const cartCtx = useContext(CarteContext);
   /* -------------------------------- Callbacks ------------------------------- */
-  const AddToCartHandler = useCallback(
-    (amount) => {
-      cartCtx.addItem({
-        id: props.id,
-        name: props.name,
-        amount,
-        price: props.price,
-      });
-    },
-    [cartCtx, props]
-  );
+  const AddToCartHandler = (amount) => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      amount,
+      price: props.price,
+    });
+  };
 
   return (
     <li className="flex justify-between p-3">

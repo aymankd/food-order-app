@@ -6,15 +6,26 @@ const defaulCartState = {
   totalAmount: 0,
 };
 
-const cartReducer = (state, action) => {
+function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM":
-      const updatedItems = [...state.items, action.item];
       const updatedTotalAmount =
         state.totalAmount + action.item.amount * action.item.price;
-      console.log("action.item: ", action.item);
-      console.log("state.totalAmount: ", state.totalAmount);
-      console.log("updatedTotalAmount: ", updatedTotalAmount);
+      const existingCartItemIndex = state.items.findIndex(
+        (item) => item.id === action.item.id
+      );
+      const existingCartItem = state.items[existingCartItemIndex];
+      let updatedItems = [...state.items];
+      if (existingCartItem) {
+        const updatedItem = {
+          ...existingCartItem,
+          amount: existingCartItem.amount + action.item.amount,
+        };
+        updatedItems[existingCartItemIndex] = updatedItem;
+      } else {
+        updatedItems = [...updatedItems, { ...action.item }];
+      }
+
       return {
         items: updatedItems,
         totalAmount: updatedTotalAmount,
@@ -24,7 +35,7 @@ const cartReducer = (state, action) => {
     default:
       return defaulCartState;
   }
-};
+}
 
 const CartProvider = (props) => {
   const [carteState, dispatchCartAction] = useReducer(
@@ -32,21 +43,16 @@ const CartProvider = (props) => {
     defaulCartState
   );
 
-  const addItemHandler = (item) => {
+  const addItemHandler = (item) =>
     dispatchCartAction({
       type: "ADD_ITEM",
       item,
     });
-  };
-
-  const removeItemHandler = (id) => {
+  const removeItemHandler = (id) =>
     dispatchCartAction({
       type: "REMOVE_ITEM",
       id,
     });
-  };
-
-  console.log("carteState: ", carteState);
 
   const cartContext = {
     items: carteState.items,

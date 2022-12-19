@@ -12,7 +12,7 @@ export default function Cart(props) {
   const cartItemAddHandler = useCallback(() => {}, []);
 
   const cartitems = (
-    <ul className="list-none divide-y-2 divide-amber-800">
+    <ul className="max-h-80 list-none divide-y-2 divide-amber-800 overflow-auto">
       {cartCtx.items.map((item) => (
         <CartItem
           key={item.id}
@@ -28,7 +28,6 @@ export default function Cart(props) {
 
   const hasItems = cartCtx.items.length > 0;
 
-  console.log("---cartCtx.totalAmount---", cartCtx.totalAmount);
   const totalAmount = `$${cartCtx.totalAmount?.toFixed(2)}`;
   return (
     <Modal onClickOutside={props.onClose}>

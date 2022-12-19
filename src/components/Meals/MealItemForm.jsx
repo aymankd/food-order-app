@@ -19,8 +19,8 @@ export default function MealItemForm(props) {
       setAmountIsValid(false);
       return;
     }
-    setAmountIsValid(true);
     props.onAddToCart(entredAmountNumber);
+    setAmountIsValid(true);
   }, []);
 
   return (
